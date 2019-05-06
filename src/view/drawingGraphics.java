@@ -4,94 +4,79 @@
  * and open the template in the editor.
  */
 package view;
-    import java.util.*;
-    import java.awt.*;
-    import java.lang.*;
-    import static java.util.Arrays.copyOf;
     import javax.swing.*; 
-    import controller.*;
-    import model.*;
-
-    import java.net.URL;
-    import javax.swing.*;
-    import javax.sound.sampled.*;
     import java.awt.Graphics;
-    import java.applet.Applet;
-    import java.awt.GridLayout;
-    import java.awt.image.BufferedImage;
-    import java.io.File;
-    import java.io.IOException;
-    import java.util.logging.Level;
-    import java.util.logging.Logger;
-    import javax.imageio.ImageIO;
-    import java.util.concurrent.TimeUnit;
-import java.util.Timer;
-import static model.model.ACTUAL_BULL_POS;
-import static model.model.BULL_POS;
-import static model.model.LINE_POS;
-import static model.model.TORREADOR_EDGE;
-import static model.model.TORREADOR_POS;
-import view.resources;
+    import static model.model.*;
 
 /**
  *
  * @author Kuba
  */
+
+/**
+ * zbiór metod i zmiennych odpowiedzialnych za rysowanie grafiki i animacji podczas gry
+ */
 public class drawingGraphics  extends JLabel  {
-    private int level;
     private int iterations;
     private Graphics g = getGraphics();
 
     public int getIterations() {
         return iterations;
     }
-    public drawingGraphics(int arg,int i){
-        level=arg;
+    /**konstruktor klasy, przypisuje zmienną iteracyjną potrzebną do animacji*/
+    public drawingGraphics(int i){
+
         iterations=i;
     }
-
-
    
     public void update(Graphics g){
         paint(g);
     }
     public void paint(Graphics g)  {
-            //animacje
-
-            ACTUAL_BULL_POS=BULL_POS-iterations*model.bullSpeed;
-
-            g.drawImage(resources.background, 0, 0, this);
-            g.drawImage(resources.line, LINE_POS, 150+370,this);
+        //tło i linia
+        g.drawImage(resources.background, 0, 0, this);
+        g.drawImage(resources.line, LINE_POS_X, LINE_POS_Y,this);
+        //martwy torreador, nie uskoczył    
+        if(actual_bull_pos<=TORREADOR_EDGE && model.model.getBullRunFurther()==0 &&  model.model.getIfClicked()==0)
+            g.drawImage(resources.dead, TORREADOR_DEAD_POS_X, TORREADOR_DEAD_POS_AFTER_MOVE_Y, this);
+        //martwy torreador, uskoczył 
+        else if(actual_bull_pos<=TORREADOR_EDGE && model.model.getBullRunFurther()==0 && model.model.getIfClicked()==1)
+            g.drawImage(resources.dead, TORREADOR_DEAD_POS_X, TORREADOR_DEAD_POS_Y, this);
+        //żywy torreador, uskoczył
+        else if(model.model.getIfClicked()==1)
+            g.drawImage(resources.move, TORREADOR_POS_X, TORREADOR_AFTER_MOVE_POS_Y, this);
+        //żywy torreador, nie uskoczył
+        else
+            g.drawImage(resources.torreador, TORREADOR_POS_X, TORREADOR_POS_Y, this);    
+        
+        //animacja biegu byka górą    
+        if(model.model.getIfClicked()==1 && model.model.getBullRunFurther()==0){
+            if(iterations%12>=1 && iterations%12<4) 
+                g.drawImage(resources.bull1, actual_bull_pos , BULL_POS_AFTER_MOVE_Y, this);
             
-            if(ACTUAL_BULL_POS<=TORREADOR_EDGE && model.getBullRunFurther()==0 &&  model.getIfClicked()!=1){
-                g.drawImage(resources.dead, TORREADOR_POS-50, 103+370+60, this);
-            }
-            else if(ACTUAL_BULL_POS<=TORREADOR_EDGE && model.getBullRunFurther()==0 && model.getIfClicked()==1){
-                g.drawImage(resources.dead, TORREADOR_POS-50, 103+370+30, this);
-            }
-            else if(model.getIfClicked()==1){
-                g.drawImage(resources.move, TORREADOR_POS, 103+370-20, this);
-            }
-            else{
-                g.drawImage(resources.torreador, TORREADOR_POS, 103+370, this);    
-            }
+            else if(iterations%12>=5 && iterations%12<8) 
+                g.drawImage(resources.bull2, actual_bull_pos , BULL_POS_AFTER_MOVE_Y, this);
             
-            if(model.getIfClicked()==1 && model.getBullRunFurther()==0){
-                if(iterations%12>=1 && iterations%12<4) g.drawImage(resources.bull1, ACTUAL_BULL_POS , 115+340, this);
-                else if(iterations%12>=5 && iterations%12<8) g.drawImage(resources.bull2, ACTUAL_BULL_POS , 115+340, this);
-                else g.drawImage(resources.bull3, ACTUAL_BULL_POS , 115+340, this);
-            }
-            else{
-                if(iterations%12>=1 && iterations%12<4) g.drawImage(resources.bull1, ACTUAL_BULL_POS , 115+370, this);
-                else if(iterations%12>=5 && iterations%12<8) g.drawImage(resources.bull2, ACTUAL_BULL_POS , 115+370, this);
-                else g.drawImage(resources.bull3, ACTUAL_BULL_POS , 115+370, this);
-            }
+            else 
+                g.drawImage(resources.bull3, actual_bull_pos , BULL_POS_AFTER_MOVE_Y, this);
+        }
+        //animacja biegu byka dołem   
+        else{
+            if(iterations%12>=1 && iterations%12<4) 
+                g.drawImage(resources.bull1, actual_bull_pos , BULL_POS_Y, this);
             
-            g.drawString("Level: "+model.getLevel(),70,20); 
-            g.drawString("SPACE-jump",870,20);
-            g.drawString("R-restart",870,40);
-            g.drawString("ESC-exit",870,60);
-            g.drawString("M-mute",870,80);   
+            else if(iterations%12>=5 && iterations%12<8) 
+                g.drawImage(resources.bull2, actual_bull_pos , BULL_POS_Y, this);
+            
+            else 
+                g.drawImage(resources.bull3, actual_bull_pos , BULL_POS_Y, this);
+        }
+        //klawiszologia   
+        g.drawString("Level: "+model.model.getLevel(),70,20); 
+        g.drawString("SPACE-jump",870,20);
+        g.drawString("R-restart",870,40);
+        g.drawString("ESC-exit",870,60);
+        g.drawString("M-mute",870,80);   
     }
 
 }

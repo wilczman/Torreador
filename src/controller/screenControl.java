@@ -5,76 +5,54 @@
  */
 package controller;
 
-import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JFrame;
-import javax.swing.Timer;
 import model.gameThreadClass;
-import static model.gameThreadClass.gcontrol;
-import static model.model.ACTUAL_BULL_POS;
+
 import static model.model.TORREADOR_EDGE;
+import static model.model.actual_bull_pos;
 import static model.model.getLevel;
 import view.drawingGraphics;
-import view.gui;
-import static view.gui.getExit;
-import static view.gui.getFrame;
-import static view.gui.getPlay;
-import static view.gui.gameWindowCreator;
+import static model.model.BULL_POS_X;
 
 /**
  *
  * @author kuba
  */
+/**klasa odpowiedzialna za obsługę rysowania grafiki w oknie*/
 public class screenControl extends view.gui implements ActionListener {
     
     private int i=0;
-    private drawingGraphics mainView=new drawingGraphics(getLevel(),i);
+    private drawingGraphics mainView=new drawingGraphics(i);
     
-    public void screenControl(){
-        i=0;
-        mainView=new drawingGraphics(getLevel(),i);
-    }
     public int getI() {
         return i;
     }
     public void setI(int i) {
         this.i = i;
     }
-    
-    
+    /** listener timera w którym wykonuje się rysowanie grafiki podczas 1 klatki działania programu*/
     public void actionPerformed(ActionEvent event){
      
-                getGameWindow().remove(mainView);
-                
-                mainView=new drawingGraphics(getLevel(),i);
-                model.model.mainViewCopy=mainView;
-                
-                getGameWindow().getContentPane().add(mainView); 
-                getGameWindow().getContentPane().revalidate();
-                i=i+1;
-                
-                //bull is outta arena 
-                if(ACTUAL_BULL_POS<-100) {
-                   gameThreadClass.timer.stop();
-                }
-                //else if(ACTUAL_BULL_POS<-100 && model.model.getBullStop()==1)
-                    
-                //if you were too late
-                else if(ACTUAL_BULL_POS<=TORREADOR_EDGE && model.model.getBullRunFurther()==0){
-                   gameThreadClass.timer.stop();
-                   model.model.lost(); 
-                                        
-                }
-                //System.out.println("spacja: " + model.model.getIfClicked()+" użycie przycisku: "+ gcontrol.getClickedFlag()+" pzycja byka: "+ ACTUAL_BULL_POS);
-              
-    }
-    public void screenClear(){
         getGameWindow().remove(mainView);
-    }
-    
+        actual_bull_pos=BULL_POS_X-i*model.model.bullSpeed;        
+        mainView=new drawingGraphics(i);
+        model.model.mainViewCopy=mainView;
+                
+        getGameWindow().getContentPane().add(mainView); 
+        getGameWindow().getContentPane().revalidate();
+        i=i+1;
+                
+        //stop drawing if bull is outta arena 
+        if(actual_bull_pos<-100) {
+            gameThreadClass.timer.stop();
+        }                     
+        //if you were too late stop drawing and activate lost phase
+        else if(actual_bull_pos<=TORREADOR_EDGE && model.model.getBullRunFurther()==0){
+            gameThreadClass.timer.stop();
+            model.model.lost();                               
+        }              
+    }       
 }
     
 

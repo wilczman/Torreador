@@ -15,25 +15,25 @@ import view.sound;
  *
  * @author Kuba
  */
+/**klasa odpowiedzialna za stworzenie oddzielnego wątku dla rozgrywki*/
 public class gameThreadClass {
-    //public static  screenControl control=null;
-    public static Thread gameThread;
     
+    public static Thread gameThread;
     public static gameControl gcontrol=null;
     public static Timer timer = null;
     public static screenControl control = null;
     
-    public static void starterPack(){
+    /**tworzy obiekt klasy gameListener i dodaje keyListenera*/
+    public static void createGameListener(){
        gcontrol = new gameControl();
        getGameWindow().addKeyListener(gcontrol);
        control = new screenControl();
     }
-    
-    public static void playGameThread() throws Exception {
+    /**tworzy wątek rozgrywki, a w nim używa timera, odtwarza muzykę, startuje wątek*/
+    public static void playGameThread(){
 
-        sound.music(2);
-        sound.music(3);
-        control.screenControl();
+        sound.playSound(2);
+        sound.playSound(3);
         timer = new Timer((int)(1000/model.FRAMERATE), control);
         gameThread = new Thread(){
             public void run(){

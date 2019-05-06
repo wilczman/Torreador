@@ -7,10 +7,8 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.Timer;
 import model.gameThreadClass;
 import static model.gameThreadClass.playGameThread;
 import view.gui;
@@ -20,25 +18,22 @@ import view.gui;
  *
  * @author Kuba
  */
+/**klasa odpowiedzialna za obsługę menu*/
 public class menuControl extends view.gui implements ActionListener {
-    
+    /**listener przycisków menu*/
     public void actionPerformed(ActionEvent event){
-                String string ="";
+        String line ="";
            
-                if(event.getSource()==getExit()){
-                    string=String.format("ActionCommand: %s", event.getActionCommand());
-                    System.exit(0);
-                }          
-                else if(event.getSource()==getPlay()){
-                    string=String.format("ActionCommand: %s", event.getActionCommand());     
-                    try {
-                        gameWindowCreator();
-                        gameThreadClass.starterPack();
-                        playGameThread();
-                    }  
-                    catch (Exception ex) {Logger.getLogger(gui.class.getName()).log(Level.SEVERE, null, ex);}   
-                    getFrame().dispose();
-                }
-                //JOptionPane.showMessageDialog(null, string);
-            }
+        if(event.getSource()==getExit()){
+            line=String.format("ActionCommand: %s", event.getActionCommand());
+            System.exit(0);
+        }          
+        else if(event.getSource()==getPlay()){
+            line=String.format("ActionCommand: %s", event.getActionCommand());     
+            gameWindowCreator();
+            gameThreadClass.createGameListener();
+            playGameThread();            
+            getFrame().dispose();
+        }
+    }
 }

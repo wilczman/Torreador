@@ -5,33 +5,38 @@
  */
 package view;
 
-import java.net.URL;
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
+    import java.net.URL;
+    import javax.sound.sampled.AudioInputStream;
+    import javax.sound.sampled.AudioSystem;
+    import javax.sound.sampled.Clip;
 
 /**
  *
  * @author Kuba
+ */
+
+/** 
+ * klasa zawierająca załadowane pliki
+ * dźwiękowe oraz metody do obsługi dźwięku
  */
 public class sound {
     
     private static Clip clip[]={null,null,null,null,null,null};
     private static AudioInputStream ais[]={null,null,null,null,null,null};
     
-    public static final String path1 = "audio/sound3.wav";
-    public static final String path2 = "audio/bullSounds.wav";
-    public static final String path3 = "audio/crowd.wav";
+    public static final String AUDIO_PATH_MUSIC = "audio/sound3.wav";
+    public static final String AUDIO_PATH_BULL_SOUNDS = "audio/bullSounds.wav";
+    public static final String AUDIO_PATH_CROWD_SOUNDS = "audio/crowd.wav";
     
     public static Clip[] getClip() {
         return clip;
     }  
-    
-    public static void getSounds() throws Exception {
+    /** pobiera pliki dźwiękowe i przypisuje je zmiennym*/
+    public static void loadSounds() throws Exception {
         
-        URL url[] ={gui.class.getResource(path1),
-                    gui.class.getResource(path2),
-                    gui.class.getResource(path3)
+        URL url[] ={gui.class.getResource(AUDIO_PATH_MUSIC),
+                    gui.class.getResource(AUDIO_PATH_BULL_SOUNDS),
+                    gui.class.getResource(AUDIO_PATH_CROWD_SOUNDS)
         };    
         clip[0] = AudioSystem.getClip();
         clip[1] = AudioSystem.getClip();
@@ -45,8 +50,8 @@ public class sound {
         clip[1].open(ais[1]);
         clip[2].open(ais[2]);
     }
-    
-    public static void music(int number) throws Exception {
+     /** odtwarza dźwięk*/
+    public static void playSound(int number) {
         clip[number-1].loop(Clip.LOOP_CONTINUOUSLY);        
     }
 }

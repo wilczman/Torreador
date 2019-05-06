@@ -5,27 +5,20 @@
  */
 package controller;
 
-import java.awt.BorderLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
 import model.gameThreadClass;
 import static model.gameThreadClass.gameThread;
 import static model.model.*;
-import view.gui;
 import view.sound;
 
 /**
  *
  * @author kuba
  */
+/**klasa odpowiedzialna za obsługę rozgrywki*/
 public class gameControl extends view.gui implements KeyListener{
     private int clickedFlag=0;//żeby można było tylko raz kliknąć    
 
@@ -37,10 +30,10 @@ public class gameControl extends view.gui implements KeyListener{
     }
 
 
-@Override
+    /**listener przycisków odpowiedzialnych za rozgrywke*/
     public void keyPressed(KeyEvent e) {
         //too early
-        if (e.getKeyCode()==KeyEvent.VK_SPACE&&clickedFlag!=1 && ACTUAL_BULL_POS>LINE_EDGE){
+        if (e.getKeyCode()==KeyEvent.VK_SPACE&&clickedFlag!=1 && actual_bull_pos>LINE_EDGE){
             System.out.println("EARLY GREY");
             clickedFlag=1;
             model.model.setIfClicked(1);
@@ -51,8 +44,8 @@ public class gameControl extends view.gui implements KeyListener{
         //perfect
         else if(e.getKeyCode()==KeyEvent.VK_SPACE 
                 &&clickedFlag!=1 
-                && ACTUAL_BULL_POS<LINE_EDGE
-                && ACTUAL_BULL_POS>TORREADOR_EDGE){
+                && actual_bull_pos<LINE_EDGE
+                && actual_bull_pos>TORREADOR_EDGE){
             clickedFlag=1;
             model.model.setBullRunFurther(1);
             model.model.setIfClicked(1);
@@ -67,7 +60,7 @@ public class gameControl extends view.gui implements KeyListener{
 
     }
 
-@Override
+    /**listener przycisków odpowiedzialnych za rozgrywke*/
     public void keyReleased(KeyEvent e) {
         //spacedPressed = false;
         //System.out.println("Released");
@@ -102,7 +95,7 @@ public class gameControl extends view.gui implements KeyListener{
 
 }
 
-@Override
+    /**listener przycisków odpowiedzialnych za rozgrywke*/
     public void keyTyped(KeyEvent e){
         
             

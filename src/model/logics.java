@@ -13,6 +13,7 @@ package model;
     import static model.gameThreadClass.gameThread;
     import static model.gameThreadClass.playGameThread;
     import static view.gui.*;
+
 /**klasa odpowiedzialna za logikę rozgrywki*/
 public class logics {
     public static final int TORREADOR_POS_X = 102;

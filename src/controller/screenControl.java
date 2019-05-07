@@ -8,10 +8,8 @@ package controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import model.gameThreadClass;
-
 import static model.logics.TORREADOR_EDGE;
 import static model.logics.actual_bull_pos;
-import static model.logics.getLevel;
 import view.drawingGraphics;
 import static model.logics.BULL_POS_X;
 

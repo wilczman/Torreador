@@ -7,11 +7,8 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import model.gameThreadClass;
 import static model.gameThreadClass.playGameThread;
-import view.gui;
 
 
 /**

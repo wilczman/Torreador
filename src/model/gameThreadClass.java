@@ -34,7 +34,7 @@ public class gameThreadClass {
 
         sound.playSound(2);
         sound.playSound(3);
-        timer = new Timer((int)(1000/model.FRAMERATE), control);
+        timer = new Timer((int)(1000/logics.FRAMERATE), control);
         gameThread = new Thread(){
             public void run(){
                 control.setI(0);

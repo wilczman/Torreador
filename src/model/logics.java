@@ -14,7 +14,7 @@ package model;
     import static model.gameThreadClass.playGameThread;
     import static view.gui.*;
 /**klasa odpowiedzialna za logikę rozgrywki*/
-public class model {
+public class logics {
     public static final int TORREADOR_POS_X = 102;
     public static final int TORREADOR_POS_Y = 103+370;
     public static final int TORREADOR_AFTER_MOVE_POS_Y = TORREADOR_POS_Y-20;
@@ -48,7 +48,7 @@ public class model {
     }
 
     public static void setIfClicked(int ifClicked) {
-        model.ifClicked = ifClicked;
+        logics.ifClicked = ifClicked;
     }
 
     public static int getBullRunFurther() {
@@ -56,7 +56,7 @@ public class model {
     }
 
     public static void setBullRunFurther(int bullStop) {
-        model.bullRunFurther = bullStop;
+        logics.bullRunFurther = bullStop;
     }
     
     public static int getLevel() {
@@ -64,7 +64,7 @@ public class model {
     }
 
     public static void setLevel(int level) {
-        model.level = level;
+        logics.level = level;
     }
     /**woła funkcję start*/
     public static void main(String[] args) throws Exception {

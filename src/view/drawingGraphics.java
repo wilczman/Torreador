@@ -6,7 +6,7 @@
 package view;
     import javax.swing.*; 
     import java.awt.Graphics;
-    import static model.model.*;
+    import static model.logics.*;
 
 /**
  *
@@ -37,20 +37,20 @@ public class drawingGraphics  extends JLabel  {
         g.drawImage(resources.background, 0, 0, this);
         g.drawImage(resources.line, LINE_POS_X, LINE_POS_Y,this);
         //martwy torreador, nie uskoczył    
-        if(actual_bull_pos<=TORREADOR_EDGE && model.model.getBullRunFurther()==0 &&  model.model.getIfClicked()==0)
+        if(actual_bull_pos<=TORREADOR_EDGE && model.logics.getBullRunFurther()==0 &&  model.logics.getIfClicked()==0)
             g.drawImage(resources.dead, TORREADOR_DEAD_POS_X, TORREADOR_DEAD_POS_AFTER_MOVE_Y, this);
         //martwy torreador, uskoczył 
-        else if(actual_bull_pos<=TORREADOR_EDGE && model.model.getBullRunFurther()==0 && model.model.getIfClicked()==1)
+        else if(actual_bull_pos<=TORREADOR_EDGE && model.logics.getBullRunFurther()==0 && model.logics.getIfClicked()==1)
             g.drawImage(resources.dead, TORREADOR_DEAD_POS_X, TORREADOR_DEAD_POS_Y, this);
         //żywy torreador, uskoczył
-        else if(model.model.getIfClicked()==1)
+        else if(model.logics.getIfClicked()==1)
             g.drawImage(resources.move, TORREADOR_POS_X, TORREADOR_AFTER_MOVE_POS_Y, this);
         //żywy torreador, nie uskoczył
         else
             g.drawImage(resources.torreador, TORREADOR_POS_X, TORREADOR_POS_Y, this);    
         
         //animacja biegu byka górą    
-        if(model.model.getIfClicked()==1 && model.model.getBullRunFurther()==0){
+        if(model.logics.getIfClicked()==1 && model.logics.getBullRunFurther()==0){
             if(iterations%12>=1 && iterations%12<4) 
                 g.drawImage(resources.bull1, actual_bull_pos , BULL_POS_AFTER_MOVE_Y, this);
             
@@ -72,7 +72,7 @@ public class drawingGraphics  extends JLabel  {
                 g.drawImage(resources.bull3, actual_bull_pos , BULL_POS_Y, this);
         }
         //klawiszologia   
-        g.drawString("Level: "+model.model.getLevel(),70,20); 
+        g.drawString("Level: "+model.logics.getLevel(),70,20); 
         g.drawString("SPACE-jump",870,20);
         g.drawString("R-restart",870,40);
         g.drawString("ESC-exit",870,60);

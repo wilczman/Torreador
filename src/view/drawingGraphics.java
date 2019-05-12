@@ -17,15 +17,16 @@ package view;
  * zbiór metod i zmiennych odpowiedzialnych za rysowanie grafiki i animacji podczas gry
  */
 public class drawingGraphics  extends JLabel  {
+    /**przekazany numer iteracji z modułu control*/
     private int iterations;
+    /**Obiekt klasy Graphics posiadający metody do rysowania grafiki*/
     private Graphics g = getGraphics();
 
     public int getIterations() {
         return iterations;
     }
     /**konstruktor klasy, przypisuje zmienną iteracyjną potrzebną do animacji*/
-    public drawingGraphics(int i){
-
+    public drawingGraphics(int/**przekazany numer iteracji z modułu control*/ i){
         iterations=i;
     }
    

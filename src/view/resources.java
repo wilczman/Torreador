@@ -19,42 +19,59 @@ package view;
 public class resources {
     
     //paths to files
+    /**ścieżka grafiki byka*/
     public static final String BULL_PATH1 = "images/bullStanding.png";
+    /**ścieżka grafiki byka*/
     public static final String BULL_PATH2 = "images/bullMoving1.png";
+    /**ścieżka grafiki byka*/
     public static final String BULL_PATH3 = "images/bullMoving2.png";
+    /**ścieżka grafiki toreadora*/
     public static final String TORREADOR_PATH = "images/torreador.png";
+    /**ścieżka grafiki tła*/
     public static final String BACKGROUND_PATH = "images/arenav2.png";
+    /**ścieżka grafiki linii*/
     public static final String LINE_PATH = "images/line.png";
+    /**ścieżka grafiki martwego toreadora*/
     public static final String DEAD_PATH = "images/dead.png";
+    /**ścieżka grafiki przesuniętego toreadora*/
     public static final String MOVE_PATH = "images/move.png";
      
     //making URLS from string paths
+    
+    /**adres URL grafiki byka*/
     public static final URL BULL1_URL = drawingGraphics.class.getResource(BULL_PATH1);
+    /**adres URL grafiki byka*/
     public static final URL BULL2_URL = drawingGraphics.class.getResource(BULL_PATH2);
+    /**adres URL grafiki byka*/
     public static final URL BULL3_URL = drawingGraphics.class.getResource(BULL_PATH3);
+    /**adres URL grafiki toreadora*/
     public static final URL TORREADOR_URL = drawingGraphics.class.getResource(TORREADOR_PATH);
+    /**adres URL grafiki tła*/
     public static final URL BACKGROUND_URL = drawingGraphics.class.getResource(BACKGROUND_PATH);
+    /**adres URL grafiki linii*/
     public static final URL LINE_URL = drawingGraphics.class.getResource(LINE_PATH);
+    /**adres URL grafiki martwego toreadora*/
     public static final URL DEAD_URL = drawingGraphics.class.getResource(DEAD_PATH);
+    /**adres URL grafiki przesuniętego toreadora*/
     public static final URL MOVE_URL = drawingGraphics.class.getResource(MOVE_PATH);        
     
     //declaring images variables
     /**animacja byka #1*/
-    public static BufferedImage bull1;
+    protected static BufferedImage bull1;
     /**animacja byka #2*/
-    public static BufferedImage bull2;
+    protected static BufferedImage bull2;
     /**animacja byka #3*/
-    public static BufferedImage bull3;
+    protected static BufferedImage bull3;
     /**grafika toreadora*/
-    public static BufferedImage torreador;
+    protected static BufferedImage torreador;
     /**grafika tła*/
-    public static BufferedImage background;
+    protected static BufferedImage background;
     /**grafika linii*/
-    public static BufferedImage line;
+    protected static BufferedImage line;
     /**grafika martwego toreadora*/
-    public static BufferedImage dead;
+    protected static BufferedImage dead;
     /**grafika linii*/
-    public static BufferedImage move;
+    protected static BufferedImage move;
     
     /** 
      * funkcja pobiera obrazy z adresów url i przypisuje je zmiennym

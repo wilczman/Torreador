@@ -13,8 +13,9 @@ package model;
     import static model.gameThreadClass.gameThread;
     import static model.gameThreadClass.playGameThread;
     import static view.gui.*;
-/**klasa odpowiedzialna za logikę rozgrywki*/
+/**klasa odpowiedzialna za logikę rozgrywki, posiada stałe oznaczające pozycje elementów na ekranie*/
 public class logics {
+    //stałe
     public static final int TORREADOR_POS_X = 102;
     public static final int TORREADOR_POS_Y = 103+370;
     public static final int TORREADOR_AFTER_MOVE_POS_Y = TORREADOR_POS_Y-20;
@@ -27,7 +28,6 @@ public class logics {
     public static final int BULL_POS_Y = 485;
     public static final int BULL_POS_AFTER_MOVE_X = 800;
     public static final int BULL_POS_AFTER_MOVE_Y = 455;
-    
     
     public static final int TORREADOR_EDGE = TORREADOR_POS_X+23;
     public static final int LINE_EDGE = LINE_POS_X+4;

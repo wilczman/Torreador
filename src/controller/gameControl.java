@@ -7,8 +7,6 @@ package controller;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import model.gameThreadClass;
 import static model.gameThreadClass.gameThread;
 import static model.logics.*;
@@ -45,13 +43,11 @@ public class gameControl extends view.gui implements KeyListener{
             clickedFlag=1;
             model.logics.setBullRunFurther(1);
             model.logics.setIfClicked(1);
-            try {
+            
                 won();
                 gameThreadClass.timer.stop();
                 restart();
-            } catch (Exception ex) {
-                Logger.getLogger(gameControl.class.getName()).log(Level.SEVERE, null, ex);
-              }
+            
         }
 
     }
@@ -63,26 +59,20 @@ public class gameControl extends view.gui implements KeyListener{
         System.exit(0);
     }
     if (e.getKeyCode() == KeyEvent.VK_R) {
-        try { 
             model.logics.setLevel(0);
             bullSpeed=BULL_DEFAULT_SPEED; 
             restart();
-        }
-        catch (Exception ex) { Logger.getLogger(gameControl.class.getName()).log(Level.SEVERE, null, ex);}    
     }
     if (e.getKeyCode() == KeyEvent.VK_M) {
         System.out.println("Muted");
-        try {   
-            sound.getClip()[0].stop();
-        }
-        catch (Exception ex) { Logger.getLogger(gameControl.class.getName()).log(Level.SEVERE, null, ex);}    
+            sound.getClip()[0].stop();      
     }
     if (e.getKeyCode()==KeyEvent.VK_P){
         try {
             System.out.println("pause");
             gameThread.sleep(8000);
         } catch (InterruptedException ex) {
-            Logger.getLogger(gameControl.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Exception during pause");
         }
     }     
 
@@ -91,6 +81,5 @@ public class gameControl extends view.gui implements KeyListener{
     /**listener przycisków odpowiedzialnych za rozgrywke*/
     public void keyTyped(KeyEvent e){
         
-            
     }
 }

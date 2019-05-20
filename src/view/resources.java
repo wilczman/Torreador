@@ -9,6 +9,9 @@ package view;
     import java.awt.image.BufferedImage;
     import java.net.URL;
     import javax.imageio.ImageIO;
+    import javax.sound.sampled.AudioInputStream;
+    import javax.sound.sampled.AudioSystem;
+    import javax.sound.sampled.Clip;
 
 /**
  *
@@ -53,7 +56,11 @@ public class resources {
     /**adres URL grafiki martwego toreadora*/
     public static final URL DEAD_URL = drawingGraphics.class.getResource(DEAD_PATH);
     /**adres URL grafiki przesuniętego toreadora*/
-    public static final URL MOVE_URL = drawingGraphics.class.getResource(MOVE_PATH);        
+    public static final URL MOVE_URL = drawingGraphics.class.getResource(MOVE_PATH);  
+    
+    public static final String AUDIO_PATH_MUSIC = "audio/sound3.wav";
+    public static final String AUDIO_PATH_BULL_SOUNDS = "audio/bullSounds.wav";
+    public static final String AUDIO_PATH_CROWD_SOUNDS = "audio/crowd.wav";  
     
     //declaring images variables
     /**animacja byka #1*/
@@ -72,11 +79,36 @@ public class resources {
     protected static BufferedImage dead;
     /**grafika linii*/
     protected static BufferedImage move;
+        
+    protected static Clip clip[]={null,null,null,null,null,null};
+    protected static AudioInputStream ais[]={null,null,null,null,null,null};
     
+    protected static Clip[] getClip() {
+        return clip;
+    }  
+    /** pobiera pliki dźwiękowe i przypisuje je zmiennym*/
+    private static void loadSounds() throws Exception {
+        
+        URL url[] ={gui.class.getResource(AUDIO_PATH_MUSIC),
+                    gui.class.getResource(AUDIO_PATH_BULL_SOUNDS),
+                    gui.class.getResource(AUDIO_PATH_CROWD_SOUNDS)
+        };    
+        clip[0] = AudioSystem.getClip();
+        clip[1] = AudioSystem.getClip();
+        clip[2] = AudioSystem.getClip();
+        
+        // getAudioInputStream() also accepts a File or InputStream
+        ais[0] = AudioSystem.getAudioInputStream(url[0]);
+        ais[1] = AudioSystem.getAudioInputStream(url[1]);
+        ais[2] = AudioSystem.getAudioInputStream(url[2]);
+        clip[0].open(ais[0]);
+        clip[1].open(ais[1]);
+        clip[2].open(ais[2]);
+    }
     /** 
      * funkcja pobiera obrazy z adresów url i przypisuje je zmiennym
      */
-    public static void loadResources() throws Exception{
+    private static void loadGraphics() throws Exception{
         bull1 = ImageIO.read(BULL1_URL);
         bull2 = ImageIO.read(BULL2_URL);
         bull3 = ImageIO.read(BULL3_URL);
@@ -85,5 +117,9 @@ public class resources {
         line = ImageIO.read(LINE_URL);
         dead = ImageIO.read(DEAD_URL);
         move = ImageIO.read(MOVE_URL);
+    }
+    public static void loadResources() throws Exception{
+        loadSounds();
+        loadGraphics();
     }
 }

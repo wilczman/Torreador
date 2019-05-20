@@ -5,11 +5,10 @@
  */
 package model;
 
-import controller.gameControl;
-import controller.screenControl;
 import javax.swing.Timer;
+
+import controller.gameControl;
 import static view.gui.getGameWindow;
-import view.sound;
 
 /**
  *
@@ -18,23 +17,23 @@ import view.sound;
 /**klasa odpowiedzialna za stworzenie oddzielnego wątku dla rozgrywki*/
 public class gameThreadClass {
     
-    public static Thread gameThread;
-    public static gameControl gcontrol=null;
-    public static Timer timer = null;
-    public static screenControl control = null;
+    protected static Thread gameThread;
+    protected static gameControl gcontrol=null;
+    protected static Timer timer = null;
+    protected static screenLogics control = null;
     
     /**tworzy obiekt klasy gameListener i dodaje keyListenera*/
-    public static void createGameListener(){
+    protected static void createGameListener(){
        gcontrol = new gameControl();
        getGameWindow().addKeyListener(gcontrol);
-       control = new screenControl();
+       control = new screenLogics();
     }
     /**tworzy wątek rozgrywki, a w nim używa timera, odtwarza muzykę, startuje wątek*/
-    public static void playGameThread(){
+    protected static void playGameThread(){
 
-        sound.playSound(2);
-        sound.playSound(3);
-        timer = new Timer((int)(1000/logics.FRAMERATE), control);
+        model.GeneralLogics.musicLogics("start", 2);
+        model.GeneralLogics.musicLogics("start", 3);
+        timer = new Timer((int)(1000/GeneralLogics.FRAMERATE), control);
         gameThread = new Thread(){
             public void run(){
                 control.setI(0);

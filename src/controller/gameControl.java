@@ -7,79 +7,36 @@ package controller;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import model.gameThreadClass;
-import static model.gameThreadClass.gameThread;
-import static model.logics.*;
-import view.sound;
 
 /**
  *
  * @author kuba
  */
 /**klasa odpowiedzialna za obsługę rozgrywki*/
-public class gameControl extends view.gui implements KeyListener{
-    private int clickedFlag=0;//żeby można było tylko raz kliknąć    
-
-    public void setClickedFlag(int flag) {
-        clickedFlag = flag;
-    }
-    public int getClickedFlag() {
-        return clickedFlag;
-    }
-
+public class gameControl implements KeyListener{    
 
     /**listener przycisków odpowiedzialnych za rozgrywke*/
     public void keyPressed(KeyEvent e) {
-        //too early
-        if (e.getKeyCode()==KeyEvent.VK_SPACE&&clickedFlag!=1 && actual_bull_pos>LINE_EDGE){
-            clickedFlag=1;
-            model.logics.setIfClicked(1);
-        }
-        //perfect
-        else if(e.getKeyCode()==KeyEvent.VK_SPACE 
-                &&clickedFlag!=1 
-                && actual_bull_pos<LINE_EDGE
-                && actual_bull_pos>TORREADOR_EDGE){
-            clickedFlag=1;
-            model.logics.setBullRunFurther(1);
-            model.logics.setIfClicked(1);
-            
-                won();
-                gameThreadClass.timer.stop();
-                restart();
-            
-        }
-
+        if (e.getKeyCode()==KeyEvent.VK_SPACE) 
+            model.GeneralLogics.keyboardAction("space");     
     }
 
     /**listener przycisków odpowiedzialnych za rozgrywke*/
     public void keyReleased(KeyEvent e) {
+        
     if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-        System.out.println("Programme exit (0)");
-        System.exit(0);
+        model.GeneralLogics.keyboardAction("escape");
     }
     if (e.getKeyCode() == KeyEvent.VK_R) {
-            model.logics.setLevel(0);
-            bullSpeed=BULL_DEFAULT_SPEED; 
-            restart();
+        model.GeneralLogics.keyboardAction("r");
     }
     if (e.getKeyCode() == KeyEvent.VK_M) {
-        System.out.println("Muted");
-            sound.getClip()[0].stop();      
+        model.GeneralLogics.keyboardAction("m");  
     }
     if (e.getKeyCode()==KeyEvent.VK_P){
-        try {
-            System.out.println("pause");
-            gameThread.sleep(8000);
-        } catch (InterruptedException ex) {
-            System.out.println("Exception during pause");
-        }
-    }     
-
-}
-
-    /**listener przycisków odpowiedzialnych za rozgrywke*/
-    public void keyTyped(KeyEvent e){
-        
+        model.GeneralLogics.keyboardAction("p");
     }
+}
+    /**listener przycisków odpowiedzialnych za rozgrywke*/
+    public void keyTyped(KeyEvent e){}
 }

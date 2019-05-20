@@ -7,7 +7,6 @@ package view;
 
     import java.awt.*;
     import javax.swing.*; 
-    import controller.menuControl;
 
 /**
  *
@@ -40,7 +39,7 @@ public class gui{
         return gameWindow;
     }    
     /**tworzy okno menu*/    
-    public static void menuWindowCreator() throws Exception{
+    public static void menuWindowCreator() {
         //ta klasa jest potrzebne do pobierania obrazków
         Class<gui> klasa = gui.class;
         Icon icon = new ImageIcon(klasa.getResource("images/torreadorPlaque.png"));
@@ -72,7 +71,7 @@ public class gui{
         menuWindow.getContentPane().add(BorderLayout.NORTH, banner);
         menuWindow.setVisible(true);
             
-        menuControl control = new menuControl();
+        controller.menuControl control = new controller.menuControl();
         play.addActionListener(control);
         exit.addActionListener(control);
 

@@ -7,9 +7,6 @@ package model;
 
 import javax.swing.Timer;
 
-import controller.gameControl;
-import static view.gui.getGameWindow;
-
 /**
  *
  * @author Kuba
@@ -18,27 +15,26 @@ import static view.gui.getGameWindow;
 public class gameThreadClass {
     
     protected static Thread gameThread;
-    protected static gameControl gcontrol=null;
+    protected static controller.gameControl gcontrol=null;
     protected static Timer timer = null;
     protected static screenLogics control = null;
     
     /**tworzy obiekt klasy gameListener i dodaje keyListenera*/
     protected static void createGameListener(){
-       gcontrol = new gameControl();
-       getGameWindow().addKeyListener(gcontrol);
+       gcontrol = new controller.gameControl();
+       view.viewCommunication.communicateWithView(view.viewCommunication.RETURNGAMEWINDOWOBJECT).addKeyListener(gcontrol);
        control = new screenLogics();
     }
     /**tworzy wątek rozgrywki, a w nim używa timera, odtwarza muzykę, startuje wątek*/
     protected static void playGameThread(){
 
-        model.GeneralLogics.musicLogics("start", 2);
-        model.GeneralLogics.musicLogics("start", 3);
-        timer = new Timer((int)(1000/GeneralLogics.FRAMERATE), control);
+        model.generalLogics.musicLogics("start", 2);
+        model.generalLogics.musicLogics("start", 3);
+        timer = new Timer((int)(1000/generalLogics.FRAMERATE), control);
         gameThread = new Thread(){
             public void run(){
                 control.setI(0);
                 timer.start(); 
-                //return;
             }
         }; 
         gameThread.start();

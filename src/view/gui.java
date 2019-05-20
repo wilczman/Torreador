@@ -26,20 +26,20 @@ public class gui{
     /**okno gry*/
     private static JFrame gameWindow;
 
-    public static JFrame getFrame() {
+    protected static JFrame getFrame() {
         return menuWindow;
     } 
-    public static JButton getPlay() {
+    protected static JButton getPlay() {
         return play;
     }
-    public static JButton getExit() {
+    protected static JButton getExit() {
         return exit;
     }
-    public static JFrame getGameWindow() {
+    protected static JFrame getGameWindow() {
         return gameWindow;
     }    
     /**tworzy okno menu*/    
-    public static void menuWindowCreator() {
+    protected static void menuWindowCreator() {
         //ta klasa jest potrzebne do pobierania obrazków
         Class<gui> klasa = gui.class;
         Icon icon = new ImageIcon(klasa.getResource("images/torreadorPlaque.png"));
@@ -78,7 +78,7 @@ public class gui{
         sound.playSound(1);
     }
     /**tworzy okno gry*/ 
-    public static void gameWindowCreator() {
+    protected static void gameWindowCreator() {
 
         gameWindow = new JFrame("TorreadorGame");      
         gameWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);   
@@ -90,12 +90,12 @@ public class gui{
     }
 
     /**wyświetla komunikat o przegranej*/   
-    public static void youLost(){
+    protected static void youLost(){
         JFrame l = new JFrame("Lost");
         JOptionPane.showMessageDialog(l, "You lost");
     }
     /**wyświetla komunikat o wygranej*/
-    public static void youWon(){
+    protected static void youWon(){
         JFrame l = new JFrame("Won");
         JOptionPane.showMessageDialog(l, "The Winner takes it all!!!");
     }   

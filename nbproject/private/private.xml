@@ -3,17 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/kuba/Documents/GitHub/Torreador/src/model/drawingLogics.java</file>
-            <file>file:/Users/kuba/Documents/GitHub/Torreador/src/controller/gameControl.java</file>
-            <file>file:/Users/kuba/Documents/GitHub/Torreador/src/model/screenLogics.java</file>
-            <file>file:/Users/kuba/Documents/GitHub/Torreador/src/view/resources.java</file>
-            <file>file:/Users/kuba/Documents/GitHub/Torreador/src/model/GeneralLogics.java</file>
-            <file>file:/Users/kuba/Documents/GitHub/Torreador/src/controller/menuControl.java</file>
-            <file>file:/Users/kuba/Documents/GitHub/Torreador/src/view/gui.java</file>
-            <file>file:/Users/kuba/Documents/GitHub/Torreador/src/view/sound.java</file>
-            <file>file:/Users/kuba/Documents/GitHub/Torreador/src/view/viewCommunication.java</file>
-            <file>file:/Users/kuba/Documents/GitHub/Torreador/src/view/drawingGraphics.java</file>
-            <file>file:/Users/kuba/Documents/GitHub/Torreador/src/model/gameThreadClass.java</file>
+            <file>file:/C:/Users/Kuba/Desktop/GIT/Torreador/src/model/screenLogics.java</file>
+            <file>file:/C:/Users/Kuba/Desktop/GIT/Torreador/src/view/gui.java</file>
+            <file>file:/C:/Users/Kuba/Desktop/GIT/Torreador/src/view/resources.java</file>
+            <file>file:/C:/Users/Kuba/Desktop/GIT/Torreador/src/controller/menuControl.java</file>
+            <file>file:/C:/Users/Kuba/Desktop/GIT/Torreador/src/model/generalLogics.java</file>
+            <file>file:/C:/Users/Kuba/Desktop/GIT/Torreador/src/view/viewCommunication.java</file>
+            <file>file:/C:/Users/Kuba/Desktop/GIT/Torreador/src/model/gameThreadClass.java</file>
+            <file>file:/C:/Users/Kuba/Desktop/GIT/Torreador/src/view/sound.java</file>
+            <file>file:/C:/Users/Kuba/Desktop/GIT/Torreador/src/view/drawingGraphics.java</file>
+            <file>file:/C:/Users/Kuba/Desktop/GIT/Torreador/src/controller/gameControl.java</file>
         </group>
     </open-files>
 </project-private>

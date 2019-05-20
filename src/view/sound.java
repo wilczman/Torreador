@@ -19,12 +19,12 @@ package view;
 public class sound {
 
      /** odtwarza dźwięk*/
-    public static void playSound(int number){
+    protected static void playSound(int number){
             resources.getClip()[number-1].stop();
             resources.getClip()[number-1].setMicrosecondPosition(0);
         resources.getClip()[number-1].loop(Clip.LOOP_CONTINUOUSLY);     
     }
-    public static void stopSound(int number){
+    protected static void stopSound(int number){
         resources.getClip()[number].stop();
         resources.getClip()[number].setMicrosecondPosition(0);        
     }

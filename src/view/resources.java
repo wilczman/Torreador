@@ -118,7 +118,7 @@ public class resources {
         dead = ImageIO.read(DEAD_URL);
         move = ImageIO.read(MOVE_URL);
     }
-    public static void loadResources() throws Exception{
+    protected static void loadResources() throws Exception{
         loadSounds();
         loadGraphics();
     }

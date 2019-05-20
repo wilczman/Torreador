@@ -11,12 +11,11 @@ package model;
 
     import static model.gameThreadClass.gameThread;
     import static model.gameThreadClass.playGameThread;
-import view.drawingGraphics;
 
 /**klasa odpowiedzialna za logikę rozgrywki, posiada stałe oznaczające pozycje elementów na ekranie*/
 
 /**klasa odpowiedzialna za logikę rozgrywki*/
-public class GeneralLogics {
+public class generalLogics {
     //stałe
     public static final int TORREADOR_POS_X = 102;
     public static final int TORREADOR_POS_Y = 103+370;
@@ -41,36 +40,41 @@ public class GeneralLogics {
             OPENMENUWINDOWCREATOR=2,
             OPENGAMEWINDOWCREATOR=3,
             LOADRESOURCES=4,
-            DISPOSEGAMEWINDOW=5;
-
+            DISPOSEGAMEWINDOW=5,
+            PLAYSOUND=6,
+            STOPSOUND=7,
+            RETURNGAMEWINDOWOBJECT=8,
+            RETURNMENUWINDOWOBJECT=9,
+            DRAWING=10,
+            DELETINGLAYER=11;
+    
     /**zmienna oznaczająca osiągnięty poziom */
     protected static int level=0;
     private static int bullRunFurther=0; //czy byk ma sie zatrzymac czy biec dalej
     private static int ifClicked=0;
     private static int clickedFlag=0;
     
-    public static drawingGraphics mainViewCopy=null;
-    public static int bullSpeed=BULL_DEFAULT_SPEED+5*level;
-    public static int actual_bull_pos=BULL_POS_X;
+    protected static int bullSpeed=BULL_DEFAULT_SPEED+5*level;
+    protected static int actual_bull_pos=BULL_POS_X;
 
-    public static int getIfClicked() {
+    protected static int getIfClicked() {
         return ifClicked;
     }
     
-    public static int getClickedFlag() {
+    protected static int getClickedFlag() {
         return clickedFlag;
     }
 
-    public static void setIfClicked(int ifClicked) {
-        GeneralLogics.ifClicked = ifClicked;
+    protected static void setIfClicked(int ifClicked) {
+        generalLogics.ifClicked = ifClicked;
     }
 
-    public static int getBullRunFurther() {
+    protected static int getBullRunFurther() {
         return bullRunFurther;
     }
 
-    public static void setBullRunFurther(int bullStop) {
-        GeneralLogics.bullRunFurther = bullStop;
+    protected static void setBullRunFurther(int bullStop) {
+        generalLogics.bullRunFurther = bullStop;
     }
 
     /**woła funkcję start*/
@@ -85,7 +89,6 @@ public class GeneralLogics {
     private static void start() throws Exception {   
         
         System.out.println("Running");
-        view.resources.loadResources();
         view.viewCommunication.communicateWithView(LOADRESOURCES);
         view.viewCommunication.communicateWithView(OPENMENUWINDOWCREATOR);
     }
@@ -99,8 +102,8 @@ public class GeneralLogics {
         actual_bull_pos=BULL_POS_X;
         ifClicked=0;
         clickedFlag=0;
-        
-        view.gui.getGameWindow().remove(mainViewCopy);
+        view.viewCommunication.communicateWithView(DELETINGLAYER);
+        //view.gui.getGameWindow().remove(mainViewCopy);
         //resseting audio tracks
         musicLogics("stop",1);
         musicLogics("stop",2);
@@ -144,11 +147,11 @@ public class GeneralLogics {
         restart();
     }
     protected static void musicLogics(String command, int number){
-        if ("start".equals(command)){
-            view.sound.playSound(number);
-        }
+        if ("start".equals(command))
+            view.viewCommunication.communicateWithView(PLAYSOUND,number);
+        
         else if ("stop".equals(command))
-            view.sound.stopSound(number);
+            view.viewCommunication.communicateWithView(STOPSOUND,number);
     }
     public static void keyboardAction(String key) {
         if (key.equals("r"))   

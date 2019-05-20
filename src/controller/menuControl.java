@@ -7,8 +7,6 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import static view.gui.getExit;
-import static view.gui.getPlay;
 /**
  *
  * @author Kuba
@@ -18,11 +16,11 @@ public class menuControl implements ActionListener {
     /**listener przycisków menu*/
     public void actionPerformed(ActionEvent event){
            
-        if(event.getSource()==getExit()){
-            model.GeneralLogics.buttonAction("exit");            
+        if(event.getSource()==view.viewCommunication.communicateWithView(view.viewCommunication.GETEXITBUTTON,'p')){
+            model.generalLogics.buttonAction("exit");            
         }          
-        else if(event.getSource()==getPlay()){
-            model.GeneralLogics.buttonAction("play");
+        else if(event.getSource()==view.viewCommunication.communicateWithView(view.viewCommunication.GETEXITBUTTON,'p')){
+            model.generalLogics.buttonAction("play");
         }
     }
 }

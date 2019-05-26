@@ -19,7 +19,7 @@ public class menuControl implements ActionListener {
         if(event.getSource()==view.viewCommunication.communicateWithView(view.viewCommunication.GETEXITBUTTON,'p')){
             model.generalLogics.buttonAction("exit");            
         }          
-        else if(event.getSource()==view.viewCommunication.communicateWithView(view.viewCommunication.GETEXITBUTTON,'p')){
+        else if(event.getSource()==view.viewCommunication.communicateWithView(view.viewCommunication.GETPLAYBUTTON,'p')){
             model.generalLogics.buttonAction("play");
         }
     }

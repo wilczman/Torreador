@@ -14,12 +14,17 @@ import java.awt.event.ActionListener;
 /**klasa odpowiedzialna za obsługę menu*/
 public class menuControl implements ActionListener {
     /**listener przycisków menu*/
+    public static final int
+            
+        GETPLAYBUTTON=12,
+        GETEXITBUTTON=13;
+    
     public void actionPerformed(ActionEvent event){
            
-        if(event.getSource()==view.viewCommunication.communicateWithView(view.viewCommunication.GETEXITBUTTON,'p')){
+        if(event.getSource()==view.viewCommunication.communicateWithView(GETEXITBUTTON,'p')){
             model.generalLogics.buttonAction("exit");            
         }          
-        else if(event.getSource()==view.viewCommunication.communicateWithView(view.viewCommunication.GETPLAYBUTTON,'p')){
+        else if(event.getSource()==view.viewCommunication.communicateWithView(GETPLAYBUTTON,'p')){
             model.generalLogics.buttonAction("play");
         }
     }
